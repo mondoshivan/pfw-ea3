@@ -5,7 +5,6 @@ import de.imut.oop.talkv3.client.command.set.PingResponseCommand;
 import de.imut.oop.talkv3.client.command.set.SetContextCommand;
 import de.imut.oop.talkv3.command.Context;
 import de.imut.oop.talkv3.common.SystemExitCode;
-import de.imut.oop.talkv3.server.command.set.PingRequestCommand;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -26,9 +25,6 @@ public class Dispatcher implements Runnable {
 	// the listeningPort
     private int listeningPort;
 
-    // the factory
-    private CommunicatorFactory factory;
-
     /**
      * The constructor of the dispatcher.
      * 
@@ -37,7 +33,6 @@ public class Dispatcher implements Runnable {
      */
     public Dispatcher(int port) {
         this.listeningPort = port;
-        this.factory = CommunicatorFactory.getInstance();
     }
 
     public static void broadcastMessage(String user, String message, Context context) {
@@ -104,7 +99,7 @@ public class Dispatcher implements Runnable {
                 System.out.println("Connection established to remote " + clientIP + ":" + clientPort + 
                 		" from local adress " + socket.getLocalAddress() + ":" + socket.getLocalPort());
                 boolean isServerCommunicator = true;
-                Communicator communicator = factory.createCommunicator(socket, isServerCommunicator);
+                Communicator communicator = CommunicatorFactory.getInstance().createCommunicator(socket, isServerCommunicator);
                 CommunicatorServer communicatorServer = (CommunicatorServer) communicator;
                 SetContextCommand contextCommand = new SetContextCommand(communicatorServer.getContext());
                 communicatorServer.getSender().sendCommand(contextCommand);
