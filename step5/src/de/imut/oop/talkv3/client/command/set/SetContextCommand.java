@@ -14,6 +14,7 @@ public class SetContextCommand implements RemoteCommand, ClientCommand {
     private Context context;
 
     public SetContextCommand(Context context) {
+        super();
         this.context = context;
     }
 

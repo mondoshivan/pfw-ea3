@@ -31,6 +31,7 @@ public class MessageCommand implements RemoteCommand, ClientCommand {
      * 			- the message variable.
      */
     public MessageCommand(String user, String message) {
+        super();
         this.user = user;
         this.message = message;
     }

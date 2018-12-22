@@ -14,6 +14,7 @@ public class PingRequestCommand implements RemoteCommand, ServerCommand {
     private long startTime;
 
     public PingRequestCommand() {
+        super();
         this.startTime = System.nanoTime();
     }
 

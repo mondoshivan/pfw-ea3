@@ -13,6 +13,7 @@ public class PingResponseCommand implements RemoteCommand, ClientCommand {
     private long oneWayTime;
 
     public PingResponseCommand(long startTime, long oneWayTime) {
+        super();
         this.startTime = startTime;
         this.oneWayTime = oneWayTime;
     }
