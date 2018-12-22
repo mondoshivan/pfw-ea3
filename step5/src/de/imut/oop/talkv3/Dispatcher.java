@@ -49,7 +49,7 @@ public class Dispatcher implements Runnable {
         }
     }
 
-    public static void removeClient(Context context) {
+    public static void removeClient(String username, Context context) {
         System.out.println("Exit Command received from id: " + context.getId());
         List<Communicator> communicators = CommunicatorFactory.getInstance().getCommunicators();
         for (Communicator communicator : communicators) {
@@ -62,6 +62,7 @@ public class Dispatcher implements Runnable {
                     e.printStackTrace();
                 }
                 CommunicatorFactory.getInstance().removeCommunicator(communicatorServer);
+                Dispatcher.broadcastMessage(username, "exit.", context);
                 break;
             }
         }

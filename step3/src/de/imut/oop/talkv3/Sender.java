@@ -71,7 +71,7 @@ public class Sender implements Runnable {
 
         RemoteCommand command;
         if (line.equals("exit.")) {
-            command = new ExitCommand();
+            command = new ExitCommand(userName);
         } else {
             command = new BroadcastCommand(userName, line);
         }

@@ -49,7 +49,7 @@ public class InputCommandProcessor implements Runnable{
 
         RemoteCommand command;
         if (line.equals("exit.")) {
-            command = new ExitCommand();
+            command = new ExitCommand(TalkClient.username);
         } else if (line.equals("ping.")) {
             command = new PingRequestCommand();
         } else {

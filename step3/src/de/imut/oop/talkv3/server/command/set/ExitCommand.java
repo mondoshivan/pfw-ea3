@@ -17,18 +17,20 @@ public class ExitCommand extends ServerCommand {
 	// default serialVersionUID
 	private static final long serialVersionUID = 1L;
 
+	private String username;
 	/**
 	 * The constructor of the Exitcommand.
 	 *
 	 * @param code
 	 * 			- the code of the exit-Command.
 	 */
-	public ExitCommand() {
+	public ExitCommand(String username) {
 		super();
+		this.username = username;
 	}
 	
 	@Override
 	public void execute(Context context) {
-		Dispatcher.removeClient(context);
+		Dispatcher.removeClient(username, context);
 	}
 }
