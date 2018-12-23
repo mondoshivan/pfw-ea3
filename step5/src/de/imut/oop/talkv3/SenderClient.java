@@ -1,8 +1,8 @@
-package de.imut.oop.talkv3;
+package step5.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.command.RemoteCommand;
-import de.imut.oop.talkv3.common.SystemExitCode;
-import de.imut.oop.talkv3.server.command.set.ExitCommand;
+import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
+import step5.src.de.imut.oop.talkv3.common.SystemExitCode;
+import step5.src.de.imut.oop.talkv3.server.command.set.ExitCommand;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.util.concurrent.ArrayBlockingQueue;
  * A simple sender of network traffic.
  *
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  */
 public class SenderClient implements Runnable {
     // the variable socket for the sender
@@ -25,12 +25,14 @@ public class SenderClient implements Runnable {
     // the objectoutputstream
     private ObjectOutputStream outputStream;
 
+    // the queue with the commands of the user
     private ArrayBlockingQueue<RemoteCommand> queue;
 
     /**
-     * A sender of information over the network.
-     *
-     * @param socket - the socket of the sender
+     * The constructor of the senderClient class.
+     * 
+     * @param socket - the socket
+     * @param queue - the queue with the commands
      */
     public SenderClient(Socket socket, ArrayBlockingQueue<RemoteCommand> queue) {
         this.socket = socket;

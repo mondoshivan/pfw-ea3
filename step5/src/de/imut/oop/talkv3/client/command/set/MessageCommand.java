@@ -1,13 +1,13 @@
-package de.imut.oop.talkv3.client.command.set;
+package step5.src.de.imut.oop.talkv3.client.command.set;
 
-import de.imut.oop.talkv3.command.RemoteCommand;
+import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
 
 /**
 * MessageCommand.java
 * The class for sending the messages.
 * 
 * @author Gruppe 1 - PFW WS 2018/19
-* @version 1.00, 05.12.2018
+* @version 1.01, 22.12.2018
 *
 */
 public class MessageCommand implements RemoteCommand, ClientCommand {

@@ -1,10 +1,10 @@
-package de.imut.oop.talkv3;
+package step5.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.client.command.set.MessageCommand;
-import de.imut.oop.talkv3.client.command.set.PingResponseCommand;
-import de.imut.oop.talkv3.client.command.set.SetContextCommand;
-import de.imut.oop.talkv3.command.Context;
-import de.imut.oop.talkv3.common.SystemExitCode;
+import step5.src.de.imut.oop.talkv3.client.command.set.MessageCommand;
+import step5.src.de.imut.oop.talkv3.client.command.set.PingResponseCommand;
+import step5.src.de.imut.oop.talkv3.client.command.set.SetContextCommand;
+import step5.src.de.imut.oop.talkv3.command.Context;
+import step5.src.de.imut.oop.talkv3.common.SystemExitCode;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -17,7 +17,7 @@ import java.util.List;
  * The dispatcher set the connection between client and server.
  * 
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  *
  */
 public class Dispatcher implements Runnable {
@@ -35,9 +35,16 @@ public class Dispatcher implements Runnable {
         this.listeningPort = port;
     }
 
+    /**
+     * The method to broadcast the userName, the message to the clients.
+     * 
+     * @param user - the userName of the user
+     * @param message - the message from the user
+     * @param context - the context (id) of the sending client
+     */
     public static void broadcastMessage(String user, String message, Context context) {
         List<Communicator> communicators = CommunicatorFactory.getInstance().getCommunicators();
-        System.out.println("Message \"[" + user + "] " + message + "\" received:");
+        System.out.println("Message \"[" + user + "] " + message + "\" received!");
         MessageCommand messageCommand = new MessageCommand(user, message);
 
         for (Communicator communicator : communicators) {
@@ -48,8 +55,14 @@ public class Dispatcher implements Runnable {
             communicatorServer.getSender().sendCommand(messageCommand);
         }
     }
-
-    public static void removeClient(String username, Context context) {
+    
+    
+    /**
+     * The method to remove the clients from the server after "exit."-command
+     * @param userName - the userName of the user
+     * @param context - the context of the client (id)
+     */
+    public static void removeClient(String userName, Context context) {
         System.out.println("Exit Command received from id: " + context.getId());
         List<Communicator> communicators = CommunicatorFactory.getInstance().getCommunicators();
         for (Communicator communicator : communicators) {
@@ -62,7 +75,7 @@ public class Dispatcher implements Runnable {
                     e.printStackTrace();
                 }
                 CommunicatorFactory.getInstance().removeCommunicator(communicatorServer);
-                Dispatcher.broadcastMessage(username, "exit.", context);
+                Dispatcher.broadcastMessage(userName, "exit.", context);
                 break;
             }
         }
@@ -72,6 +85,12 @@ public class Dispatcher implements Runnable {
         }
     }
 
+    /**
+     * The method to send the ping reply message to the client.
+     * 
+     * @param startTime - the startTime of sending the command
+     * @param context - the client context of the sending sender
+     */
     public static void pingResponse(long startTime, Context context) {
         System.out.println("Received ping request from client : " + context.getId());
         List<Communicator> communicators = CommunicatorFactory.getInstance().getCommunicators();

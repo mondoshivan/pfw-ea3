@@ -1,23 +1,33 @@
-package de.imut.oop.talkv3;
+package step5.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.command.Context;
+import step5.src.de.imut.oop.talkv3.command.Context;
 
 import java.net.Socket;
 
+/**
+ * CommunicatorServer.java
+ * 
+ * @author Gruppe 1 -PFW WS 2018/19
+ * @version 1.01, 22.12.2018
+ *
+ */
 public class CommunicatorServer extends Communicator {
 
+	// the private Instance of the context variable
     private Context context;
-
+    
+    // the variable for the instance of the SenderServer 
     private SenderServer sender;
 
-    /**
-     * The constructor of the Communicator class.
-     *
-     * @param socket
-     * 			- the socket
-     */
+   /**
+    * The constructor of the CommunicatorServer.
+    * 
+    * @param socket - the socket
+    * @param context - the context
+    */
     public CommunicatorServer(Socket socket, Context context) {
-        this.sender = new SenderServer(socket);
+        
+    	this.sender = new SenderServer(socket);
 
         this.receiver = new ReceiverServer(socket, this);
         Thread receiverThread = new Thread(this.receiver, "ReceiverServer");
@@ -28,10 +38,20 @@ public class CommunicatorServer extends Communicator {
         remoteCommandProcessor(getContext());
     }
 
+    /**
+     * The method to get the context.
+     * 
+     * @return context - the context
+     */
     public Context getContext() {
         return context;
     }
 
+    /**
+     * The method to return the sender.
+     * 
+     * @return sender - the sender
+     */
     public SenderServer getSender() {
         return sender;
     }

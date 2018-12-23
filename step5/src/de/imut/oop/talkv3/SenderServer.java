@@ -1,6 +1,6 @@
-package de.imut.oop.talkv3;
+package step5.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.command.RemoteCommand;
+import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -9,11 +9,11 @@ import java.net.Socket;
 
 /**
  * SenderServer.java
- * <p>
+ * 
  * A simple sender of network traffic.
  *
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  */
 public class SenderServer {
     // the variable socket for the sender
@@ -50,6 +50,11 @@ public class SenderServer {
         }
     }
 
+    /**
+     * Returns the socket of the SenderServer.
+     * 
+     * @return socket - the socket of the senderServer
+     */
     public Socket getSocket() {
         return this.socket;
     }

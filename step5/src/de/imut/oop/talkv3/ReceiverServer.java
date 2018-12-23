@@ -1,22 +1,31 @@
-package de.imut.oop.talkv3;
+package step5.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.command.RemoteCommand;
-import de.imut.oop.talkv3.common.SystemExitCode;
+import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
+import step5.src.de.imut.oop.talkv3.common.SystemExitCode;
 
 import java.io.EOFException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.net.SocketException;
 
+/**
+ * ReceiverServer.java
+ * The class of the Server of the Receiver.
+ * 
+ * @author Gruppe 1 - PFW WS 2018/19
+ * @version 1.01, 22.12.2018
+ *
+ */
 public class ReceiverServer extends ReceiverClient {
 
+	// the variable for the instance of the communicator
     private CommunicatorServer communicator;
 
     /**
      * The constructor of the ReceiverServer.
-     *
-     * @param socket
-     * 			- the socket
+     * 
+     * @param socket - the socket of the receiverServer
+     * @param communicator - the communicator instance
      */
     public ReceiverServer(Socket socket, CommunicatorServer communicator)
     {
@@ -30,7 +39,7 @@ public class ReceiverServer extends ReceiverClient {
      * @see java.lang.Runnable#run()
      */
     public final void run() {
-        RemoteCommand command;
+        
         try {
             ObjectInputStream in = new ObjectInputStream(this.socket.getInputStream());
 

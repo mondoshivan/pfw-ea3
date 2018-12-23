@@ -1,7 +1,16 @@
-package de.imut.oop.talkv3.client.command.set;
+package step5.src.de.imut.oop.talkv3.client.command.set;
 
-import de.imut.oop.talkv3.command.RemoteCommand;
+import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
 
+/**
+ * PingResponseCommand.java
+ * 
+ * The class for calculating and printing the ping response time to the client console.
+ * 
+ * @author Gruppe 1 - PFW WS 2018/19
+ * @version 1.01, 22.12.2018
+ *
+ */
 public class PingResponseCommand implements RemoteCommand, ClientCommand {
 
     /**
@@ -9,9 +18,18 @@ public class PingResponseCommand implements RemoteCommand, ClientCommand {
      */
     private static final long serialVersionUID = 1L;
 
+    // the startTime of 
     private long startTime;
+    
+    // the oneWay time from client to server, if reachable
     private long oneWayTime;
-
+    
+    /**
+     * The constructor of the class.
+     * 
+     * @param startTime - the startTime of the pingCommand of the user
+     * @param oneWayTime - the time value from sending to server reached
+     */
     public PingResponseCommand(long startTime, long oneWayTime) {
         super();
         this.startTime = startTime;

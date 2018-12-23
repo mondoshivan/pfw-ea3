@@ -1,9 +1,18 @@
-package de.imut.oop.talkv3.client.command.set;
+package step5.src.de.imut.oop.talkv3.client.command.set;
 
-import de.imut.oop.talkv3.TalkClient;
-import de.imut.oop.talkv3.command.Context;
-import de.imut.oop.talkv3.command.RemoteCommand;
+import step5.src.de.imut.oop.talkv3.TalkClient;
+import step5.src.de.imut.oop.talkv3.command.Context;
+import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
 
+/**
+ * SetContextCommand.java
+ * 
+ * The class for printing the client id-Number on screen.
+ *  
+ * @author Gruppe 1 - PFW WS 2018/19
+ * @version 1.01, 22.12.2018
+ *
+ */
 public class SetContextCommand implements RemoteCommand, ClientCommand {
 
     /**
@@ -11,8 +20,14 @@ public class SetContextCommand implements RemoteCommand, ClientCommand {
      */
     private static final long serialVersionUID = 1L;
 
+    // the variable for the instance of Context 
     private Context context;
 
+    /**
+     * The constructor of the class.
+     *  
+     * @param context - the context of the sender (id)
+     */
     public SetContextCommand(Context context) {
         super();
         this.context = context;
