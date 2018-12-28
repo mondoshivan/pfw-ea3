@@ -1,20 +1,20 @@
-package de.imut.oop.talkv3;
+package step3.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.command.RemoteCommand;
-import de.imut.oop.talkv3.common.SystemExitCode;
-import de.imut.oop.talkv3.server.command.set.BroadcastCommand;
-import de.imut.oop.talkv3.server.command.set.ExitCommand;
+import step3.src.de.imut.oop.talkv3.command.RemoteCommand;
+import step3.src.de.imut.oop.talkv3.common.SystemExitCode;
+import step3.src.de.imut.oop.talkv3.server.command.set.BroadcastCommand;
+import step3.src.de.imut.oop.talkv3.server.command.set.ExitCommand;
 
 import java.io.*;
 import java.net.Socket;
 
 /**
  * Sender.java
- * <p>
+ * 
  * A simple sender of network traffic.
  *
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  */
 public class Sender implements Runnable {
     // the variable socket for the sender
@@ -29,7 +29,12 @@ public class Sender implements Runnable {
     // the name of the user
     private String userName;
 
-
+    /**
+     * The method to get the socket
+     * 
+     * @return socket 
+     * 			- the socket of the sender
+     */
     public Socket getSocket() {
         return this.socket;
     }
@@ -51,6 +56,12 @@ public class Sender implements Runnable {
     }
 
 
+    /**
+     * The ObjectOutputStream of the Sender.
+     * 
+     * @return outputStream - the outputStream of the sender
+     * 
+     */
     public ObjectOutputStream getObjectOutputStream() {
         return outputStream;
     }
@@ -58,8 +69,7 @@ public class Sender implements Runnable {
     /**
      * The method to get the command of the user.
      *
-     * @return command
-     * - the command of the user.
+     * @return command - the command of the user.
      */
     private RemoteCommand getCommand() {
         String line = null;

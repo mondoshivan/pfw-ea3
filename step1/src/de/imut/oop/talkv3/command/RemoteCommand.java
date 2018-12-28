@@ -1,13 +1,14 @@
-package de.imut.oop.talkv3.command;
+package step1.src.de.imut.oop.talkv3.command;
 
 import java.io.Serializable;
 
 /**
  * RemoteCommand.java
+ * 
  * The Super-interface RemoteCommand.
  * 
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  *
  */
 public interface RemoteCommand extends Serializable {

@@ -1,13 +1,9 @@
-package de.imut.oop.talkv3;
+package step4.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.command.RemoteCommand;
-import de.imut.oop.talkv3.common.SystemExitCode;
-import de.imut.oop.talkv3.server.command.set.BroadcastCommand;
-import de.imut.oop.talkv3.server.command.set.ExitCommand;
+import step4.src.de.imut.oop.talkv3.command.RemoteCommand;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * SenderServer.java
@@ -15,7 +11,7 @@ import java.util.concurrent.ArrayBlockingQueue;
  * A simple sender of network traffic.
  *
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  */
 public class SenderServer {
     // the variable socket for the sender

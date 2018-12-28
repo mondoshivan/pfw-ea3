@@ -1,6 +1,6 @@
-package de.imut.oop.talkv3.client.command.set;
+package step2.src.de.imut.oop.talkv3.client.command.set;
 
-import de.imut.oop.talkv3.command.RemoteCommand;
+import step2.src.de.imut.oop.talkv3.command.RemoteCommand;
 
 /**
  * ClientCommand.java
@@ -8,7 +8,7 @@ import de.imut.oop.talkv3.command.RemoteCommand;
  * An abstract class for clientCommands.
  * 
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  *
  */
 public abstract class ClientCommand implements RemoteCommand{

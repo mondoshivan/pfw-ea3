@@ -1,13 +1,13 @@
-package de.imut.oop.talkv3;
+package step2.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.client.command.set.MessageCommand;
-import de.imut.oop.talkv3.client.command.set.SetContextCommand;
-import de.imut.oop.talkv3.command.CommandListener;
-import de.imut.oop.talkv3.command.Context;
-import de.imut.oop.talkv3.command.RemoteCommand;
-import de.imut.oop.talkv3.common.SystemExitCode;
-import de.imut.oop.talkv3.server.command.set.BroadcastCommand;
-import de.imut.oop.talkv3.server.command.set.ExitCommand;
+import step2.src.de.imut.oop.talkv3.client.command.set.MessageCommand;
+import step2.src.de.imut.oop.talkv3.client.command.set.SetContextCommand;
+import step2.src.de.imut.oop.talkv3.command.CommandListener;
+import step2.src.de.imut.oop.talkv3.command.Context;
+import step2.src.de.imut.oop.talkv3.command.RemoteCommand;
+import step2.src.de.imut.oop.talkv3.common.SystemExitCode;
+import step2.src.de.imut.oop.talkv3.server.command.set.BroadcastCommand;
+import step2.src.de.imut.oop.talkv3.server.command.set.ExitCommand;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -20,7 +20,7 @@ import java.util.List;
  * The dispatcher set the connection between client and server.
  * 
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  *
  */
 public class Dispatcher implements Runnable, CommandListener {
@@ -64,6 +64,12 @@ public class Dispatcher implements Runnable, CommandListener {
         }
     }
 
+    /**
+     * The exit-Method to remove a communicator instance from the server.
+     * 
+     * @param command - the exitCommand
+     * @param context - the context of the server
+     */
     public void exit(ExitCommand command, Context context) {
         System.out.println("Exit Command received from id: " + context.getId());
         List<Communicator> communicators = factory.getCommunicators();

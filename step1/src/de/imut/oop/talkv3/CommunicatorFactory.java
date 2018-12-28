@@ -1,6 +1,6 @@
-package de.imut.oop.talkv3;
+package step1.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.command.Context;
+import step1.src.de.imut.oop.talkv3.command.Context;
 
 import java.net.Socket;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.List;
  * A Singleton to provide the instance of the factory and create the communicator.
  * 
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  *
  */
 public class CommunicatorFactory {
@@ -32,12 +32,29 @@ public class CommunicatorFactory {
         return instance;
     }
 
+    /**
+     * The method to create the clientCommunicator.
+     * 
+     * @param socket
+     * 			- the socket of the Client
+     * @return
+     * 			- the Communicator c of the client
+     */
     private Communicator createClientCommunicator(Socket socket) {
         Communicator c = new CommunicatorClient(socket);
         this.communicators.add(c);
         return c;
     }
 
+    /**
+     * The method to create the serverCommunicator.
+     * 
+     * @param socket
+     * 			- the socket of the server
+     * @return c
+     * 			- the communicator c of the server
+     * 
+     */
     private Communicator createServerCommunicator(Socket socket) {
         Communicator c = new CommunicatorServer(socket, new Context());
         this.communicators.add(c);
@@ -45,7 +62,7 @@ public class CommunicatorFactory {
     }
 
     /**
-     * The method to create the communicator.
+     * The method to create and start the communicators of the clientCommunicator and ServerCommunicator.
      * 
      * @param socket
      * 			- the socket

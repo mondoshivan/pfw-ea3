@@ -1,7 +1,7 @@
-package de.imut.oop.talkv3.server.command.set;
-import de.imut.oop.talkv3.Dispatcher;
-import de.imut.oop.talkv3.command.Context;
-import de.imut.oop.talkv3.common.SystemExitCode;
+package step3.src.de.imut.oop.talkv3.server.command.set;
+import step3.src.de.imut.oop.talkv3.Dispatcher;
+import step3.src.de.imut.oop.talkv3.command.Context;
+
 
 /**
  * ExitCommand.java
@@ -9,28 +9,30 @@ import de.imut.oop.talkv3.common.SystemExitCode;
  * The class for the regular exit of the program.
  *
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  *
  */
 public class ExitCommand extends ServerCommand {
 
 	// default serialVersionUID
 	private static final long serialVersionUID = 1L;
+	
+	// the variable userName - the name of the user
+	private String userName;
 
-	private String username;
 	/**
 	 * The constructor of the Exitcommand.
 	 *
 	 * @param code
 	 * 			- the code of the exit-Command.
 	 */
-	public ExitCommand(String username) {
+	public ExitCommand(String userName) {
 		super();
-		this.username = username;
+		this.userName = userName;
 	}
 	
 	@Override
 	public void execute(Context context) {
-		Dispatcher.removeClient(username, context);
+		Dispatcher.removeClient(userName, context);
 	}
 }

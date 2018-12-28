@@ -1,7 +1,16 @@
-package de.imut.oop.talkv3;
+package step1.src.de.imut.oop.talkv3;
 
 import java.net.Socket;
 
+/**
+ * CommunicatorClient.java
+ * 
+ * The client of the communicator.
+ * 
+ * @author Gruppe 1 - PFW WS 18/19
+ * @version 1.01 - 22.12.2018
+ *
+ */
 public class CommunicatorClient extends Communicator {
 
     /**

@@ -1,9 +1,9 @@
-package de.imut.oop.talkv3;
+package step2.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.command.RemoteCommand;
-import de.imut.oop.talkv3.common.SystemExitCode;
-import de.imut.oop.talkv3.server.command.set.BroadcastCommand;
-import de.imut.oop.talkv3.server.command.set.ExitCommand;
+import step2.src.de.imut.oop.talkv3.command.RemoteCommand;
+import step2.src.de.imut.oop.talkv3.common.SystemExitCode;
+import step2.src.de.imut.oop.talkv3.server.command.set.BroadcastCommand;
+import step2.src.de.imut.oop.talkv3.server.command.set.ExitCommand;
 
 import java.io.*;
 import java.net.Socket;
@@ -30,6 +30,11 @@ public class Sender implements Runnable {
     private String userName;
 
 
+    /**
+     * the method to return the socket
+     * 
+     * @return socket - the socket of the Sender
+     */
     public Socket getSocket() {
         return this.socket;
     }
@@ -51,6 +56,11 @@ public class Sender implements Runnable {
     }
 
 
+    /**
+     * The method to return the ObjectOutputStream of the Sender.
+     * 
+     * @return outputStream - the ObjectOutputStream of the sender
+     */
     public ObjectOutputStream getObjectOutputStream() {
         return outputStream;
     }

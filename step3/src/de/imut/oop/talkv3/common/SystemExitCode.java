@@ -1,4 +1,4 @@
-package de.imut.oop.talkv3.common;
+package step3.src.de.imut.oop.talkv3.common;
 
 /**
  * SystemExitCode.java
@@ -6,7 +6,7 @@ package de.imut.oop.talkv3.common;
  * An enum for the return of the exit-code.
  * 
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  *
  */
 public enum SystemExitCode {

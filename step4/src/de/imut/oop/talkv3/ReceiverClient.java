@@ -1,7 +1,7 @@
-package de.imut.oop.talkv3;
+package step4.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.command.RemoteCommand;
-import de.imut.oop.talkv3.common.SystemExitCode;
+import step4.src.de.imut.oop.talkv3.command.RemoteCommand;
+import step4.src.de.imut.oop.talkv3.common.SystemExitCode;
 
 import java.io.EOFException;
 import java.io.ObjectInputStream;
@@ -13,20 +13,21 @@ import java.net.Socket;
  * A simple receiver of network traffic.
  *
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  */
 public class ReceiverClient implements Runnable
 {
     // the socket variable
     protected Socket socket;
 
+    // the variable of the instance of the communicator
     private Communicator communicator;
 
     /**
      * The constructor of the ReceiverClient.
-     *
-     * @param socket
-     * 			- the socket
+     * 
+     * @param socket - the socket of the Client
+     * @param communicator - the communicator instance
      */
     public ReceiverClient(Socket socket, Communicator communicator)
     {

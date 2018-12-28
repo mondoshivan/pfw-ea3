@@ -1,11 +1,13 @@
-package de.imut.oop.talkv3.server.command.set;
+package step2.src.de.imut.oop.talkv3.server.command.set;
 
-import de.imut.oop.talkv3.command.RemoteCommand;
+import step2.src.de.imut.oop.talkv3.command.RemoteCommand;
 
 /**
  * ServerCommand.java
  * The abstract class for ServerCommands.
- * @author Freak
+ * 
+ * @author Gruppe 1 - PFW WS 2018/19
+ * @version 1.01, 22.12.2018
  *
  */
 public abstract class ServerCommand implements RemoteCommand {

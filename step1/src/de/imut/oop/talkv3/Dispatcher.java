@@ -1,12 +1,12 @@
-package de.imut.oop.talkv3;
+package step1.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.client.command.set.MessageCommand;
-import de.imut.oop.talkv3.command.CommandListener;
-import de.imut.oop.talkv3.command.Context;
-import de.imut.oop.talkv3.command.RemoteCommand;
-import de.imut.oop.talkv3.common.SystemExitCode;
-import de.imut.oop.talkv3.server.command.set.BroadcastCommand;
-import de.imut.oop.talkv3.server.command.set.ExitCommand;
+import step1.src.de.imut.oop.talkv3.client.command.set.MessageCommand;
+import step1.src.de.imut.oop.talkv3.command.CommandListener;
+import step1.src.de.imut.oop.talkv3.command.Context;
+import step1.src.de.imut.oop.talkv3.command.RemoteCommand;
+import step1.src.de.imut.oop.talkv3.common.SystemExitCode;
+import step1.src.de.imut.oop.talkv3.server.command.set.BroadcastCommand;
+import step1.src.de.imut.oop.talkv3.server.command.set.ExitCommand;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -19,7 +19,7 @@ import java.util.List;
  * The dispatcher set the connection between client and server.
  * 
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  *
  */
 public class Dispatcher implements Runnable, CommandListener {

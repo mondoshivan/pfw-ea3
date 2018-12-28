@@ -1,14 +1,19 @@
-package de.imut.oop.talkv3;
+package step3.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.command.Context;
-import de.imut.oop.talkv3.command.RemoteCommand;
-import de.imut.oop.talkv3.server.command.set.ServerCommand;
+import step3.src.de.imut.oop.talkv3.command.Context;
 
 import java.net.Socket;
-import java.util.concurrent.ArrayBlockingQueue;
 
+/**
+ * CommunicatorServer.java
+ * 
+ * @author Gruppe 1 -PFW WS 2018/19
+ * @version 1.01, 22.12.2018
+ *
+ */
 public class CommunicatorServer extends Communicator {
 
+	// the instance variable of context
     private Context context;
 
     /**
@@ -16,6 +21,8 @@ public class CommunicatorServer extends Communicator {
      *
      * @param socket
      * 			- the socket
+     * @param context
+     * 			- the context of the client
      */
     public CommunicatorServer(Socket socket, Context context) {
         this.sender = new Sender(socket);
@@ -31,6 +38,12 @@ public class CommunicatorServer extends Communicator {
         createProcessor(getContext());
     }
 
+    /**
+     * The method to get get context.
+     * 
+     * @return context
+     * 			- the context of the client.
+     */
     public Context getContext() {
         return context;
     }

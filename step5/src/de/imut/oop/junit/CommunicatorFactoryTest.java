@@ -1,4 +1,4 @@
-import de.imut.oop.talkv3.CommunicatorFactory;
+import step5.src.de.imut.oop.talkv3.CommunicatorFactory;
 import org.junit.Assert;
 import org.junit.Test;
 

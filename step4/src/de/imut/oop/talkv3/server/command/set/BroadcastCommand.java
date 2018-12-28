@@ -1,7 +1,7 @@
-package de.imut.oop.talkv3.server.command.set;
+package step4.src.de.imut.oop.talkv3.server.command.set;
 
-import de.imut.oop.talkv3.Dispatcher;
-import de.imut.oop.talkv3.command.Context;
+import step4.src.de.imut.oop.talkv3.Dispatcher;
+import step4.src.de.imut.oop.talkv3.command.Context;
 
 /**
  * BroadcastCommand.java
@@ -9,7 +9,7 @@ import de.imut.oop.talkv3.command.Context;
  * The class for broadcasting the command to the clients.
  * 
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  *
  */
 public class BroadcastCommand extends ServerCommand {
@@ -39,6 +39,9 @@ public class BroadcastCommand extends ServerCommand {
         this.message = message;
     }
 
+    /**
+     * the method to print the broadcastMessage to the recipients.
+     */
     public void execute(Context context) {
         Dispatcher.broadcastMessage(this.user, this.message, context);
     }

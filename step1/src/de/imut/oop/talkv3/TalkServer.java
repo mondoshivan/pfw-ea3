@@ -1,6 +1,6 @@
-package de.imut.oop.talkv3;
+package step1.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.common.Common;
+import step1.src.de.imut.oop.talkv3.common.Common;
 
 /**
  * TalkServer.java
@@ -8,7 +8,7 @@ import de.imut.oop.talkv3.common.Common;
  * The server of the Chat.
  * 
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  *
  */
 public class TalkServer {

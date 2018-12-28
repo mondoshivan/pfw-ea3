@@ -1,7 +1,7 @@
-package de.imut.oop.talkv3;
+package step3.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.command.Context;
-import de.imut.oop.talkv3.common.Common;
+import step3.src.de.imut.oop.talkv3.command.Context;
+import step3.src.de.imut.oop.talkv3.common.Common;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -13,7 +13,7 @@ import java.net.UnknownHostException;
  * The Client of the chat.
  * 
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  *
  */
 public class TalkClient {
@@ -24,6 +24,7 @@ public class TalkClient {
     // the default server ip
     private static final String DEFAULT_SERVER_IP = "localhost";
 
+    // the static instance of the class context
     public static Context context;
 
     /**

@@ -1,16 +1,24 @@
-package de.imut.oop.talkv3;
+package step4.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.command.Context;
-import de.imut.oop.talkv3.command.RemoteCommand;
+import step4.src.de.imut.oop.talkv3.command.Context;
+import step4.src.de.imut.oop.talkv3.command.RemoteCommand;
 
 import java.net.Socket;
 import java.util.concurrent.ArrayBlockingQueue;
 
+/**
+ * CommunicatorClient.java
+ * 
+ * @author Gruppe 1- PFW WS 2018/19
+ * @version 1.01, 22.12.2018
+ *
+ */
 public class CommunicatorClient extends Communicator {
 
     // the sender
     private SenderClient sender;
 
+    // the incomingQueue with the commands of the user
     private ArrayBlockingQueue<RemoteCommand> queueIncoming;
 
     /**
@@ -34,6 +42,9 @@ public class CommunicatorClient extends Communicator {
         remoteCommandProcessor(context);
     }
 
+    /**
+     * Method to create the Thread of the clientCommunicator.
+     */
     private void inputCommandProcessor() {
         int capacity = 10;
         this.queueIncoming = new ArrayBlockingQueue<RemoteCommand>(capacity);
@@ -42,6 +53,12 @@ public class CommunicatorClient extends Communicator {
         processorThread.start();
     }
 
+    /**
+     * The method to get the SenderClient.
+     * 
+     * @return sender
+     * 			- the senderClient
+     */
     public SenderClient getSender() {
         return sender;
     }

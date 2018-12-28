@@ -1,8 +1,7 @@
-package de.imut.oop.talkv3;
+package step3.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.command.Context;
-import de.imut.oop.talkv3.command.RemoteCommand;
-import de.imut.oop.talkv3.server.command.set.ServerCommand;
+import step3.src.de.imut.oop.talkv3.command.Context;
+import step3.src.de.imut.oop.talkv3.command.RemoteCommand;
 
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -12,7 +11,7 @@ import java.util.concurrent.ArrayBlockingQueue;
  * The communicator class.
  * 
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  *
  */
 public abstract class Communicator {
@@ -23,8 +22,15 @@ public abstract class Communicator {
     // the receiver
     protected ReceiverClient receiver;
 
+    // the incomingQueue of the chat for the command
     protected ArrayBlockingQueue<RemoteCommand> queue;
 
+    /**
+     * The method to create the Processor for the RemoteCommands.
+     * 
+     * @param context
+     * 			- the context of the clients.
+     */
     protected void createProcessor(Context context) {
         int capacity = 10;
         this.queue = new ArrayBlockingQueue<RemoteCommand>(capacity);
@@ -33,10 +39,22 @@ public abstract class Communicator {
         processorThread.start();
     }
 
+    /**
+     * The method to get the incomingQueue of the RemoteCommands.
+     * 
+     * @return queue
+     * 			- the queue of the commands
+     */
     public ArrayBlockingQueue<RemoteCommand> getInRemoteCommandQueue() {
         return queue;
     }
 
+    /**
+     * The method to get the sender.
+     * 
+     * @return sender - the sender
+     * 			
+     */
     public Sender getSender() {
         return sender;
     }

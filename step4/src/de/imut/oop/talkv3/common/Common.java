@@ -1,4 +1,4 @@
-package de.imut.oop.talkv3.common;
+package step4.src.de.imut.oop.talkv3.common;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
  * The class with the essential methods parsePort and getUserName.
  * 
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  *
  */
 public class Common {

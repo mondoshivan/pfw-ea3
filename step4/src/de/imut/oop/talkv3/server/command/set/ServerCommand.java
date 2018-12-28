@@ -1,13 +1,14 @@
-package de.imut.oop.talkv3.server.command.set;
+package step4.src.de.imut.oop.talkv3.server.command.set;
 
-import de.imut.oop.talkv3.command.Context;
-import de.imut.oop.talkv3.command.RemoteCommand;
+import step4.src.de.imut.oop.talkv3.command.Context;
+import step4.src.de.imut.oop.talkv3.command.RemoteCommand;
 
 /**
  * ServerCommand.java
  * The abstract class for ServerCommands.
- * @author Freak
- *
+ * 
+ * @author Gruppe 1 - PFW WS 2018/19
+ * @version 1.01, 22.12.2018
  */
 public abstract class ServerCommand implements RemoteCommand {
 
@@ -17,5 +18,10 @@ public abstract class ServerCommand implements RemoteCommand {
 	private static final long serialVersionUID = 1L;
 
 
+	/**
+	 * The abstract method execute.
+	 * 
+	 * @param context - the context (id) from the client
+	 */
 	public abstract void execute(Context context);
 }

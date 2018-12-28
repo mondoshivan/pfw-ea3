@@ -1,8 +1,17 @@
-package de.imut.oop.talkv3.client.command.set;
+package step3.src.de.imut.oop.talkv3.client.command.set;
 
-import de.imut.oop.talkv3.TalkClient;
-import de.imut.oop.talkv3.command.Context;
+import step3.src.de.imut.oop.talkv3.TalkClient;
+import step3.src.de.imut.oop.talkv3.command.Context;
 
+/**
+ * SetContextCommand.java
+ * 
+ * The class for printing the client id-Number on screen.
+ *  
+ * @author Gruppe 1 - PFW WS 2018/19
+ * @version 1.01, 22.12.2018
+ *
+ */
 public class SetContextCommand extends ClientCommand {
 
     /**

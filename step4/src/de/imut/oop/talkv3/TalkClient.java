@@ -1,7 +1,7 @@
-package de.imut.oop.talkv3;
+package step4.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.command.Context;
-import de.imut.oop.talkv3.common.Common;
+import step4.src.de.imut.oop.talkv3.command.Context;
+import step4.src.de.imut.oop.talkv3.common.Common;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -13,7 +13,7 @@ import java.net.UnknownHostException;
  * The Client of the chat.
  * 
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  *
  */
 public class TalkClient {
@@ -24,9 +24,11 @@ public class TalkClient {
     // the default server ip
     private static final String DEFAULT_SERVER_IP = "localhost";
 
+    // the public, static instance of the TalkClient context (id)
     public static Context context;
 
-    public static String username;
+    // the variable userName of the name of the user
+    public static String userName;
 
     /**
      * GetSocket - method.
@@ -73,7 +75,7 @@ public class TalkClient {
     public static void main(final String[] args) {
         String serverIP = DEFAULT_SERVER_IP;
         int serverPort = DEFAULT_SERVER_PORT;
-        TalkClient.username = Common.getUserName();
+        TalkClient.userName = Common.getUserName();
 
         switch (args.length)
         {

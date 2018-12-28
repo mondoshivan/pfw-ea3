@@ -1,10 +1,9 @@
-package de.imut.oop.talkv3;
+package step3.src.de.imut.oop.talkv3;
 
-import de.imut.oop.talkv3.client.command.set.MessageCommand;
-import de.imut.oop.talkv3.client.command.set.SetContextCommand;
-import de.imut.oop.talkv3.command.Context;
-import de.imut.oop.talkv3.common.SystemExitCode;
-import de.imut.oop.talkv3.server.command.set.ExitCommand;
+import step3.src.de.imut.oop.talkv3.client.command.set.MessageCommand;
+import step3.src.de.imut.oop.talkv3.client.command.set.SetContextCommand;
+import step3.src.de.imut.oop.talkv3.command.Context;
+import step3.src.de.imut.oop.talkv3.common.SystemExitCode;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -17,7 +16,7 @@ import java.util.List;
  * The dispatcher set the connection between client and server.
  * 
  * @author Gruppe 1 - PFW WS 2018/19
- * @version 1.00, 05.12.2018
+ * @version 1.01, 22.12.2018
  *
  */
 public class Dispatcher implements Runnable {
@@ -39,6 +38,13 @@ public class Dispatcher implements Runnable {
         this.factory = CommunicatorFactory.getInstance();
     }
 
+    /**
+     * The method to broadcast the messages of the clients to all recipients.
+     * 
+     * @param user - the user
+     * @param message - the message of the user
+     * @param context - the context of the user (id)
+     */
     public static void broadcastMessage(String user, String message, Context context) {
         List<Communicator> communicators = CommunicatorFactory.getInstance().getCommunicators();
         System.out.println("Message \"[" + user + "] " + message + "\" received:");
@@ -53,7 +59,14 @@ public class Dispatcher implements Runnable {
         }
     }
 
-    public static void removeClient(String username, Context context) {
+    /**
+     * The method to remove the Clients from the Server
+     * 
+     * @param context
+     * 			- the context (id) of the client
+     */
+    
+    public static void removeClient(String userName, Context context) {
         System.out.println("Exit Command received from id: " + context.getId());
         List<Communicator> communicators = CommunicatorFactory.getInstance().getCommunicators();
         for (Communicator communicator : communicators) {
@@ -66,7 +79,7 @@ public class Dispatcher implements Runnable {
                     e.printStackTrace();
                 }
                 CommunicatorFactory.getInstance().removeCommunicator(communicatorServer);
-                Dispatcher.broadcastMessage(username, "exit.", context);
+                Dispatcher.broadcastMessage(userName, "exit.", context);
                 break;
             }
         }
