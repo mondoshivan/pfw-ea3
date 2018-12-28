@@ -20,16 +20,6 @@ public class CommunicatorFactory {
     // holds the singleton instance
     private static final CommunicatorFactory instance = new CommunicatorFactory();
 
-    // the list of the communicator
-    private List<Communicator> communicators;
-
-    /**
-     * the private constructor to ensure that only one instance can be created
-     */
-    private CommunicatorFactory() {
-        this.communicators = new ArrayList<Communicator>();
-    }
-
     // provides the singleton instance
     public static CommunicatorFactory getInstance() {
         return instance;
@@ -44,9 +34,7 @@ public class CommunicatorFactory {
      * 			- the Communicator c
      */
     private Communicator createClientCommunicator(Socket socket) {
-        Communicator c = new CommunicatorClient(socket);
-        this.communicators.add(c);
-        return c;
+        return new CommunicatorClient(socket);
     }
 
     /**
@@ -59,9 +47,7 @@ public class CommunicatorFactory {
      * 
      */
     private Communicator createServerCommunicator(Socket socket) {
-        Communicator c = new CommunicatorServer(socket, new Context());
-        this.communicators.add(c);
-        return c;
+        return new CommunicatorServer(socket, new Context());
     }
 
     /**
@@ -75,24 +61,5 @@ public class CommunicatorFactory {
      */
     public Communicator createCommunicator(Socket socket, boolean isServerCommunicator) {
         return isServerCommunicator ? createServerCommunicator(socket) : createClientCommunicator(socket);
-    }
-
-    /**
-     * Removes the communicator instance from the server.
-     *
-     * @param communicator
-     * 			- the communicator
-     */
-    public void removeCommunicator(Communicator communicator) {
-        communicators.remove(communicator);
-    }
-    
-    /**
-     * The List of the communicator.
-     * 
-     * @return communicators - a list of the communicator
-     */
-    public List<Communicator> getCommunicators() {
-        return communicators;
     }
 }

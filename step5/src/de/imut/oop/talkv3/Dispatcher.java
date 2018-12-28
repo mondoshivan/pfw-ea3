@@ -9,6 +9,7 @@ import step5.src.de.imut.oop.talkv3.common.SystemExitCode;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +26,9 @@ public class Dispatcher implements Runnable {
 	// the listeningPort
     private int listeningPort;
 
+    // the list of the communicator
+    private static List<Communicator> communicators = new ArrayList<Communicator>();
+
     /**
      * The constructor of the dispatcher.
      * 
@@ -36,6 +40,16 @@ public class Dispatcher implements Runnable {
     }
 
     /**
+     * Removes the communicator instance from the server.
+     *
+     * @param communicator
+     * 			- the communicator
+     */
+    private static void removeCommunicator(Communicator communicator) {
+        Dispatcher.communicators.remove(communicator);
+    }
+
+    /**
      * The method to broadcast the userName, the message to the clients.
      * 
      * @param user - the userName of the user
@@ -43,11 +57,10 @@ public class Dispatcher implements Runnable {
      * @param context - the context (id) of the sending client
      */
     public static void broadcastMessage(String user, String message, Context context) {
-        List<Communicator> communicators = CommunicatorFactory.getInstance().getCommunicators();
         System.out.println("Message \"[" + user + "] " + message + "\" received!");
         MessageCommand messageCommand = new MessageCommand(user, message);
 
-        for (Communicator communicator : communicators) {
+        for (Communicator communicator : Dispatcher.communicators) {
             CommunicatorServer communicatorServer = (CommunicatorServer) communicator;
             int id = communicatorServer.getContext().getId();
             if (id == context.getId()) continue;
@@ -64,8 +77,7 @@ public class Dispatcher implements Runnable {
      */
     public static void removeClient(String userName, Context context) {
         System.out.println("Exit Command received from id: " + context.getId());
-        List<Communicator> communicators = CommunicatorFactory.getInstance().getCommunicators();
-        for (Communicator communicator : communicators) {
+        for (Communicator communicator : Dispatcher.communicators) {
             CommunicatorServer communicatorServer = (CommunicatorServer) communicator;
             if (communicatorServer.getContext().getId() == context.getId()) {
                 Socket socket = communicatorServer.getSender().getSocket();
@@ -74,7 +86,7 @@ public class Dispatcher implements Runnable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                CommunicatorFactory.getInstance().removeCommunicator(communicatorServer);
+                Dispatcher.removeCommunicator(communicatorServer);
                 Dispatcher.broadcastMessage(userName, "exit.", context);
                 break;
             }
@@ -93,8 +105,7 @@ public class Dispatcher implements Runnable {
      */
     public static void pingResponse(long startTime, Context context) {
         System.out.println("Received ping request from client : " + context.getId());
-        List<Communicator> communicators = CommunicatorFactory.getInstance().getCommunicators();
-        for (Communicator communicator : communicators) {
+        for (Communicator communicator : Dispatcher.communicators) {
             CommunicatorServer communicatorServer = (CommunicatorServer) communicator;
             if (communicatorServer.getContext().getId() == context.getId()) {
                 PingResponseCommand command = new PingResponseCommand(startTime, System.nanoTime());
@@ -120,6 +131,7 @@ public class Dispatcher implements Runnable {
                 		" from local adress " + socket.getLocalAddress() + ":" + socket.getLocalPort());
                 boolean isServerCommunicator = true;
                 Communicator communicator = CommunicatorFactory.getInstance().createCommunicator(socket, isServerCommunicator);
+                Dispatcher.communicators.add(communicator);
                 CommunicatorServer communicatorServer = (CommunicatorServer) communicator;
                 SetContextCommand contextCommand = new SetContextCommand(communicatorServer.getContext());
                 communicatorServer.getSender().sendCommand(contextCommand);

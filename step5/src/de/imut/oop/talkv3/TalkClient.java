@@ -89,7 +89,7 @@ public class TalkClient {
         Socket socket = client.getSocket(serverIP, serverPort);
         boolean isServerCommunicator = false;
         CommunicatorFactory factory = CommunicatorFactory.getInstance();
-        Communicator communicator = factory.createCommunicator(socket, isServerCommunicator);
+        factory.createCommunicator(socket, isServerCommunicator);
     }
 
 }
