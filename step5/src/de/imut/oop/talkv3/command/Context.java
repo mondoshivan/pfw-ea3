@@ -1,6 +1,7 @@
 package step5.src.de.imut.oop.talkv3.command;
 
 import java.io.Serializable;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Context.java
@@ -18,7 +19,7 @@ public class Context implements Serializable {
     private static final long serialVersionUID = 1L;
 
     // the variable for calculating the client ids
-    static private int instances = 0;
+    static private AtomicInteger instances = new AtomicInteger(0);
     
     // the client id
     private int id;
@@ -27,7 +28,7 @@ public class Context implements Serializable {
      * The constructor of the class.
      */
     public Context() {
-        this.id = instances ++;
+        this.id = instances.incrementAndGet();
     }
     
     /**
