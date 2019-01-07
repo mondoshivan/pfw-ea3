@@ -20,9 +20,14 @@ public class CommunicatorFactory {
     // holds the singleton instance
     private static final CommunicatorFactory instance = new CommunicatorFactory();
 
+    /**
+     * The method to create the CommunicatorFactory
+     */
+    private CommunicatorFactory() {}
+
     // provides the singleton instance
     public static CommunicatorFactory getInstance() {
-        return instance;
+        return CommunicatorFactory.instance;
     }
 
     /**
