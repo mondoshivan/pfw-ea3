@@ -40,17 +40,13 @@ public class RemoteCommandProcessor implements Runnable{
     public void run() {
         while(true) {
             try {
-                if (this.queue.size() != 0) {
-                    RemoteCommand command = queue.take();
-                    if (command instanceof ClientCommand) {
-                        ClientCommand clientCommand = (ClientCommand) command;
-                        clientCommand.execute();
-                    } else if (command instanceof ServerCommand) {
-                        ServerCommand serverCommand = (ServerCommand) command;
-                        serverCommand.execute(context);
-                    }
-                } else {
-                    Thread.yield();
+                RemoteCommand command = queue.take();
+                if (command instanceof ClientCommand) {
+                    ClientCommand clientCommand = (ClientCommand) command;
+                    clientCommand.execute();
+                } else if (command instanceof ServerCommand) {
+                    ServerCommand serverCommand = (ServerCommand) command;
+                    serverCommand.execute(context);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
