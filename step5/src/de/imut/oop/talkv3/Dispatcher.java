@@ -11,6 +11,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Dispatcher.java
@@ -27,7 +28,7 @@ public class Dispatcher implements Runnable {
     private int listeningPort;
 
     // the list of the communicator
-    private static List<Communicator> communicators = new ArrayList<Communicator>();
+    private static ConcurrentHashMap<Context, CommunicatorServer> communicators = new ConcurrentHashMap<Context, CommunicatorServer>();
 
     /**
      * The constructor of the dispatcher.
@@ -42,11 +43,11 @@ public class Dispatcher implements Runnable {
     /**
      * Removes the communicator instance from the server.
      *
-     * @param communicator
-     * 			- the communicator
+     * @param context
+     * 			- the context
      */
-    private static void removeCommunicator(Communicator communicator) {
-        Dispatcher.communicators.remove(communicator);
+    private static void removeCommunicator(Context context) {
+        Dispatcher.communicators.remove(context);
     }
 
     /**
@@ -60,7 +61,7 @@ public class Dispatcher implements Runnable {
         System.out.println("Message \"[" + user + "] " + message + "\" received!");
         MessageCommand messageCommand = new MessageCommand(user, message);
 
-        for (Communicator communicator : Dispatcher.communicators) {
+        for (Communicator communicator : Dispatcher.communicators.values()) {
             CommunicatorServer communicatorServer = (CommunicatorServer) communicator;
             int id = communicatorServer.getContext().getId();
             if (id == context.getId()) continue;
@@ -77,20 +78,16 @@ public class Dispatcher implements Runnable {
      */
     public static void removeClient(String userName, Context context) {
         System.out.println("Exit Command received from id: " + context.getId());
-        for (Communicator communicator : Dispatcher.communicators) {
-            CommunicatorServer communicatorServer = (CommunicatorServer) communicator;
-            if (communicatorServer.getContext().getId() == context.getId()) {
-                Socket socket = communicatorServer.getSender().getSocket();
-                try {
-                    socket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Dispatcher.removeCommunicator(communicatorServer);
-                Dispatcher.broadcastMessage(userName, "exit.", context);
-                break;
-            }
+        CommunicatorServer communicator = Dispatcher.communicators.get(context);
+        Socket socket = communicator.getSender().getSocket();
+        try {
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        Dispatcher.removeCommunicator(context);
+        Dispatcher.broadcastMessage(userName, "exit.", context);
+
         if (communicators.size() == 0) {
             System.out.println("No more clients available - shutting down server");
             System.exit(SystemExitCode.NORMAL.returnExitCode());
@@ -105,13 +102,9 @@ public class Dispatcher implements Runnable {
      */
     public static void pingResponse(long startTime, Context context) {
         System.out.println("Received ping request from client : " + context.getId());
-        for (Communicator communicator : Dispatcher.communicators) {
-            CommunicatorServer communicatorServer = (CommunicatorServer) communicator;
-            if (communicatorServer.getContext().getId() == context.getId()) {
-                PingResponseCommand command = new PingResponseCommand(startTime, System.nanoTime());
-                communicatorServer.getSender().sendCommand(command);
-            }
-        }
+        CommunicatorServer communicator = Dispatcher.communicators.get(context);
+        PingResponseCommand command = new PingResponseCommand(startTime, System.nanoTime());
+        communicator.getSender().sendCommand(command);
     }
 
     /**
@@ -130,11 +123,11 @@ public class Dispatcher implements Runnable {
                 System.out.println("Connection established to remote " + clientIP + ":" + clientPort + 
                 		" from local adress " + socket.getLocalAddress() + ":" + socket.getLocalPort());
                 boolean isServerCommunicator = true;
-                Communicator communicator = CommunicatorFactory.getInstance().createCommunicator(socket, isServerCommunicator);
-                Dispatcher.communicators.add(communicator);
-                CommunicatorServer communicatorServer = (CommunicatorServer) communicator;
-                SetContextCommand contextCommand = new SetContextCommand(communicatorServer.getContext());
-                communicatorServer.getSender().sendCommand(contextCommand);
+                CommunicatorServer communicator = (CommunicatorServer) CommunicatorFactory.getInstance().createCommunicator(socket, isServerCommunicator);
+                Context context = communicator.getContext();
+                Dispatcher.communicators.put(context, communicator);
+                SetContextCommand contextCommand = new SetContextCommand(context);
+                communicator.getSender().sendCommand(contextCommand);
                 server.close();
             } catch (IOException e) {
                 Thread.yield();
