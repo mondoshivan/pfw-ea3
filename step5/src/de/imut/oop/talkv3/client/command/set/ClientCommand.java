@@ -1,6 +1,8 @@
 package step5.src.de.imut.oop.talkv3.client.command.set;
 
 
+import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
+
 /**
  * ClientCommand.java
  * 
@@ -10,7 +12,7 @@ package step5.src.de.imut.oop.talkv3.client.command.set;
  * @version 1.01, 22.12.2018
  *
  */
-public interface ClientCommand {
+public interface ClientCommand extends RemoteCommand {
 
 	/**
 	 * Executes the stored command.

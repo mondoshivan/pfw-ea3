@@ -2,7 +2,6 @@ package step5.src.de.imut.oop.talkv3.server.command.set;
 
 import step5.src.de.imut.oop.talkv3.Dispatcher;
 import step5.src.de.imut.oop.talkv3.command.Context;
-import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
 
 /**
  * ExitCommand.java
@@ -13,7 +12,7 @@ import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
  * @version 1.01, 22.12.2018
  *
  */
-public class ExitCommand implements RemoteCommand, ServerCommand {
+public class ExitCommand implements ServerCommand {
 
 	// default serialVersionUID
 	private static final long serialVersionUID = 1L;

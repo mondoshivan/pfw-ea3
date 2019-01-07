@@ -2,7 +2,6 @@ package step5.src.de.imut.oop.talkv3.client.command.set;
 
 import step5.src.de.imut.oop.talkv3.TalkClient;
 import step5.src.de.imut.oop.talkv3.command.Context;
-import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
 
 /**
  * SetContextCommand.java
@@ -13,7 +12,7 @@ import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
  * @version 1.01, 22.12.2018
  *
  */
-public class SetContextCommand implements RemoteCommand, ClientCommand {
+public class SetContextCommand implements ClientCommand {
 
     /**
      * the standard serialVersionUID.

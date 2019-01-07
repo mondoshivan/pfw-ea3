@@ -1,7 +1,5 @@
 package step5.src.de.imut.oop.talkv3.client.command.set;
 
-import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
-
 /**
  * PingResponseCommand.java
  * 
@@ -11,7 +9,7 @@ import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
  * @version 1.01, 22.12.2018
  *
  */
-public class PingResponseCommand implements RemoteCommand, ClientCommand {
+public class PingResponseCommand implements ClientCommand {
 
     /**
      * the default serialVersionUID.
