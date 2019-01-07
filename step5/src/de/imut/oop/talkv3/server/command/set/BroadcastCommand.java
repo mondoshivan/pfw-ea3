@@ -2,6 +2,7 @@ package step5.src.de.imut.oop.talkv3.server.command.set;
 
 import step5.src.de.imut.oop.talkv3.Dispatcher;
 import step5.src.de.imut.oop.talkv3.command.Context;
+import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
 
 /**
  * BroadcastCommand.java
@@ -12,7 +13,7 @@ import step5.src.de.imut.oop.talkv3.command.Context;
  * @version 1.01, 22.12.2018
  *
  */
-public class BroadcastCommand implements ServerCommand {
+public class BroadcastCommand implements RemoteCommand {
 
     /**
 	 * the default serialVersionUID.
@@ -40,7 +41,7 @@ public class BroadcastCommand implements ServerCommand {
     }
 
     /**
-     * The overrided method execute from the ServerCommand interface.
+     * The overrided method execute from the RemoteCommand interface.
      */
     @Override
     public void execute(Context context) {

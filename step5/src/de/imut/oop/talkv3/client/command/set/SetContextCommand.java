@@ -2,6 +2,7 @@ package step5.src.de.imut.oop.talkv3.client.command.set;
 
 import step5.src.de.imut.oop.talkv3.TalkClient;
 import step5.src.de.imut.oop.talkv3.command.Context;
+import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
 
 /**
  * SetContextCommand.java
@@ -12,7 +13,7 @@ import step5.src.de.imut.oop.talkv3.command.Context;
  * @version 1.01, 22.12.2018
  *
  */
-public class SetContextCommand implements ClientCommand {
+public class SetContextCommand implements RemoteCommand {
 
     /**
      * the standard serialVersionUID.
@@ -33,8 +34,8 @@ public class SetContextCommand implements ClientCommand {
     }
 
     @Override
-    public void execute() {
-        TalkClient.context = context;
-        System.out.println("Client ID set to " + context.getId());
+    public void execute(Context context) {
+        TalkClient.context = this.context;
+        System.out.println("Client ID set to " + this.context.getId());
     }
 }

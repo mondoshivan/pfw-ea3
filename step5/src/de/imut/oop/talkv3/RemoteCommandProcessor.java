@@ -1,9 +1,7 @@
 package step5.src.de.imut.oop.talkv3;
 
-import step5.src.de.imut.oop.talkv3.client.command.set.ClientCommand;
 import step5.src.de.imut.oop.talkv3.command.Context;
 import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
-import step5.src.de.imut.oop.talkv3.server.command.set.ServerCommand;
 
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -41,13 +39,7 @@ public class RemoteCommandProcessor implements Runnable{
         while(true) {
             try {
                 RemoteCommand command = queue.take();
-                if (command instanceof ClientCommand) {
-                    ClientCommand clientCommand = (ClientCommand) command;
-                    clientCommand.execute();
-                } else if (command instanceof ServerCommand) {
-                    ServerCommand serverCommand = (ServerCommand) command;
-                    serverCommand.execute(context);
-                }
+                command.execute(context);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

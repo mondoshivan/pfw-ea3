@@ -1,5 +1,8 @@
 package step5.src.de.imut.oop.talkv3.client.command.set;
 
+import step5.src.de.imut.oop.talkv3.command.Context;
+import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
+
 /**
 * MessageCommand.java
 * The class for sending the messages.
@@ -8,7 +11,7 @@ package step5.src.de.imut.oop.talkv3.client.command.set;
 * @version 1.01, 22.12.2018
 *
 */
-public class MessageCommand implements ClientCommand {
+public class MessageCommand implements RemoteCommand {
 
 	//the String variable for the user
 	private String user;
@@ -35,7 +38,7 @@ public class MessageCommand implements ClientCommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(Context context) {
         System.out.print(user + ": ");
         System.out.println(message);
     }

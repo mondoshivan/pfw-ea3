@@ -1,5 +1,8 @@
 package step5.src.de.imut.oop.talkv3.client.command.set;
 
+import step5.src.de.imut.oop.talkv3.command.Context;
+import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
+
 /**
  * PingResponseCommand.java
  * 
@@ -9,7 +12,7 @@ package step5.src.de.imut.oop.talkv3.client.command.set;
  * @version 1.01, 22.12.2018
  *
  */
-public class PingResponseCommand implements ClientCommand {
+public class PingResponseCommand implements RemoteCommand {
 
     /**
      * the default serialVersionUID.
@@ -35,7 +38,7 @@ public class PingResponseCommand implements ClientCommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(Context context) {
         long backAtClientTime = System.nanoTime();
 
         // calculating the round trip and server time
