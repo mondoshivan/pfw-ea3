@@ -48,7 +48,7 @@ public class ReceiverServer extends ReceiverClient {
                 try
                 {
                     RemoteCommand remoteCommand = (RemoteCommand) in.readObject();
-                    communicator.getInRemoteCommandQueue().add(remoteCommand);
+                    communicator.getQueueOutgoing().add(remoteCommand);
                 }
                 catch (EOFException e)	// e.g., remote connection closed connection (without sending and ExitCommand)
                 {

@@ -2,6 +2,7 @@ package step5.src.de.imut.oop.talkv3;
 
 import step5.src.de.imut.oop.talkv3.command.Context;
 
+import java.io.IOException;
 import java.net.Socket;
 
 /**
@@ -15,9 +16,6 @@ public class CommunicatorServer extends Communicator {
 
 	// the private Instance of the context variable
     private Context context;
-    
-    // the variable for the instance of the SenderServer 
-    private SenderServer sender;
 
    /**
     * The constructor of the CommunicatorServer.
@@ -26,8 +24,11 @@ public class CommunicatorServer extends Communicator {
     * @param context - the context
     */
     public CommunicatorServer(Socket socket, Context context) {
-        
-    	this.sender = new SenderServer(socket);
+        inputCommandProcessor();    // starts the inputCommandProcessor
+
+        this.sender = new Sender(socket, getQueueIncoming());
+        Thread senderThread = new Thread(this.sender, "Sender");
+        senderThread.start();
 
         this.receiver = new ReceiverServer(socket, this);
         Thread receiverThread = new Thread(this.receiver, "ReceiverServer");
@@ -47,12 +48,16 @@ public class CommunicatorServer extends Communicator {
         return context;
     }
 
+
     /**
-     * The method to return the sender.
-     * 
-     * @return sender - the sender
+     * Closes the Sender Socket.
      */
-    public SenderServer getSender() {
-        return sender;
+    public void close() {
+        Socket socket = this.sender.getSocket();
+        try {
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

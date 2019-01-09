@@ -11,14 +11,14 @@ import java.net.Socket;
 import java.util.concurrent.ArrayBlockingQueue;
 
 /**
- * SenderClient.java
+ * Sender.java
  * <p>
  * A simple sender of network traffic.
  *
  * @author Gruppe 1 - PFW WS 2018/19
  * @version 1.01, 22.12.2018
  */
-public class SenderClient implements Runnable {
+public class Sender implements Runnable {
     // the variable socket for the sender
     private Socket socket;
 
@@ -29,12 +29,12 @@ public class SenderClient implements Runnable {
     private ArrayBlockingQueue<RemoteCommand> queue;
 
     /**
-     * The constructor of the senderClient class.
+     * The constructor of the Sender class.
      * 
      * @param socket - the socket
      * @param queue - the queue with the commands
      */
-    public SenderClient(Socket socket, ArrayBlockingQueue<RemoteCommand> queue) {
+    public Sender(Socket socket, ArrayBlockingQueue<RemoteCommand> queue) {
         this.socket = socket;
         this.queue = queue;
 
@@ -69,7 +69,7 @@ public class SenderClient implements Runnable {
     }
 
     /*
-     * SenderClient thread activation
+     * Sender thread activation
      *
      * @see java.lang.Runnable#run()
      */
@@ -90,6 +90,11 @@ public class SenderClient implements Runnable {
         System.exit(SystemExitCode.NORMAL.returnExitCode());
     }
 
+    /**
+     * Returns the socket of the Sender.
+     *
+     * @return socket - the socket of the senderServer
+     */
     public Socket getSocket() {
         return this.socket;
     }

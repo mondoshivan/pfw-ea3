@@ -16,11 +16,17 @@ import java.util.concurrent.ArrayBlockingQueue;
  */
 public abstract class Communicator {
 
+    // the variable for the instance of the Sender
+    protected Sender sender;
+
     // the receiver
     protected ReceiverClient receiver;
 
     // the outgoingQueue 
     protected ArrayBlockingQueue<RemoteCommand> queueOutgoing;
+
+    // the incomingQueue
+    protected ArrayBlockingQueue<RemoteCommand> queueIncoming;
 
     /**
      * The method to create the Thread of the RemoteCommandProcessor.
@@ -36,12 +42,32 @@ public abstract class Communicator {
     }
 
     /**
+     * Method to start the inputCommandProcessor for the incomingQueue
+     */
+    protected void inputCommandProcessor() {
+        int capacity = 10;
+        this.queueIncoming = new ArrayBlockingQueue<RemoteCommand>(capacity);
+        InputCommandProcessor processor = new InputCommandProcessor(this.queueIncoming);
+        Thread processorThread = new Thread(processor, "InputProcessorThread");
+        processorThread.start();
+    }
+
+    /**
      * The method to return the queue.
      * 
      * @return queueOutgoing - the outgoingQueue 
      */
-    public ArrayBlockingQueue<RemoteCommand> getInRemoteCommandQueue() {
+    public ArrayBlockingQueue<RemoteCommand> getQueueOutgoing() {
         return queueOutgoing;
+    }
+
+    /**
+     * The method to return the queue.
+     *
+     * @return queueIncoming - the incomingQueue
+     */
+    public ArrayBlockingQueue<RemoteCommand> getQueueIncoming() {
+        return queueIncoming;
     }
 
 }

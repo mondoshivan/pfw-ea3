@@ -15,12 +15,6 @@ import java.util.concurrent.ArrayBlockingQueue;
  */
 public class CommunicatorClient extends Communicator {
 
-    // the sender
-    private SenderClient sender;
-
-    // the incomingQueue
-    private ArrayBlockingQueue<RemoteCommand> queueIncoming;
-
     /**
      * The constructor of the Communicator class.
      *
@@ -28,11 +22,10 @@ public class CommunicatorClient extends Communicator {
      * 			- the socket
      */
     public CommunicatorClient(Socket socket) {
-        
     	inputCommandProcessor();    // starts the inputCommandProcessor 
 
-        this.sender = new SenderClient(socket, this.queueIncoming);
-        Thread senderThread = new Thread(this.sender, "SenderClient");
+        this.sender = new Sender(socket, getQueueIncoming());
+        Thread senderThread = new Thread(this.sender, "Sender");
         senderThread.start();
 
         this.receiver = new ReceiverClient(socket, this);
@@ -44,22 +37,11 @@ public class CommunicatorClient extends Communicator {
     }
 
     /**
-     * Method to start the inputCommandProcessor for the incomingQueue
-     */
-    private void inputCommandProcessor() {
-        int capacity = 10;
-        this.queueIncoming = new ArrayBlockingQueue<RemoteCommand>(capacity);
-        InputCommandProcessor processor = new InputCommandProcessor(this.queueIncoming);
-        Thread processorThread = new Thread(processor, "InputProcessorThread");
-        processorThread.start();
-    }
-
-    /**
      * Returns the senderClient.
      * 
-     * @return sender - the SenderClient
+     * @return sender - the Sender
      */
-    public SenderClient getSender() {
+    public Sender getSender() {
         return sender;
     }
 }

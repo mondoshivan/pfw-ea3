@@ -61,12 +61,11 @@ public class Dispatcher implements Runnable {
         System.out.println("Message \"[" + user + "] " + message + "\" received!");
         MessageCommand messageCommand = new MessageCommand(user, message);
 
-        for (Communicator communicator : Dispatcher.communicators.values()) {
-            CommunicatorServer communicatorServer = (CommunicatorServer) communicator;
-            int id = communicatorServer.getContext().getId();
+        for (CommunicatorServer communicator : Dispatcher.communicators.values()) {
+            int id = communicator.getContext().getId();
             if (id == context.getId()) continue;
             System.out.println(" -> redirecting to client " + id);
-            communicatorServer.getSender().sendCommand(messageCommand);
+            communicator.getQueueIncoming().add(messageCommand);
         }
     }
     
@@ -79,12 +78,7 @@ public class Dispatcher implements Runnable {
     public static void removeClient(String userName, Context context) {
         System.out.println("Exit Command received from id: " + context.getId());
         CommunicatorServer communicator = Dispatcher.communicators.get(context);
-        Socket socket = communicator.getSender().getSocket();
-        try {
-            socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        communicator.close();
         Dispatcher.removeCommunicator(context);
         Dispatcher.broadcastMessage(userName, "exit.", context);
 
@@ -104,7 +98,7 @@ public class Dispatcher implements Runnable {
         System.out.println("Received ping request from client : " + context.getId());
         CommunicatorServer communicator = Dispatcher.communicators.get(context);
         PingResponseCommand command = new PingResponseCommand(startTime, System.nanoTime());
-        communicator.getSender().sendCommand(command);
+        communicator.getQueueIncoming().add(command);
     }
 
     /**
@@ -127,7 +121,7 @@ public class Dispatcher implements Runnable {
                 Context context = communicator.getContext();
                 Dispatcher.communicators.put(context, communicator);
                 SetContextCommand contextCommand = new SetContextCommand(context);
-                communicator.getSender().sendCommand(contextCommand);
+                communicator.getQueueIncoming().add(contextCommand);
                 server.close();
             } catch (IOException e) {
                 Thread.yield();

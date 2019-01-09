@@ -49,7 +49,7 @@ public class ReceiverClient implements Runnable
             do
             {
                 command = (RemoteCommand) in.readObject();
-                communicator.getInRemoteCommandQueue().add(command);
+                communicator.getQueueOutgoing().add(command);
 
             }
             while (true);
