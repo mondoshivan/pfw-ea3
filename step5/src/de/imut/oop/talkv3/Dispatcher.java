@@ -117,7 +117,7 @@ public class Dispatcher implements Runnable {
                 System.out.println("Connection established to remote " + clientIP + ":" + clientPort + 
                 		" from local adress " + socket.getLocalAddress() + ":" + socket.getLocalPort());
                 boolean isServerCommunicator = true;
-                CommunicatorServer communicator = (CommunicatorServer) CommunicatorFactory.getInstance().createCommunicator(socket, isServerCommunicator);
+                CommunicatorServer communicator = (CommunicatorServer) CommunicatorFactory.createCommunicator(socket, isServerCommunicator);
                 Context context = communicator.getContext();
                 Dispatcher.communicators.put(context, communicator);
                 SetContextCommand contextCommand = new SetContextCommand(context);

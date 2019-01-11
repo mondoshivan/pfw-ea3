@@ -17,19 +17,6 @@ import java.util.List;
  */
 public class CommunicatorFactory {
 
-    // holds the singleton instance
-    private static final CommunicatorFactory instance = new CommunicatorFactory();
-
-    /**
-     * The method to create the CommunicatorFactory
-     */
-    private CommunicatorFactory() {}
-
-    // provides the singleton instance
-    public static CommunicatorFactory getInstance() {
-        return CommunicatorFactory.instance;
-    }
-
     /**
      * The method to create the clientCommunicator.
      * 
@@ -38,7 +25,7 @@ public class CommunicatorFactory {
      * @return
      * 			- the Communicator c
      */
-    private Communicator createClientCommunicator(Socket socket) {
+    private static Communicator createClientCommunicator(Socket socket) {
         return new CommunicatorClient(socket);
     }
 
@@ -51,7 +38,7 @@ public class CommunicatorFactory {
      * 			- the communicator c of the server
      * 
      */
-    private Communicator createServerCommunicator(Socket socket) {
+    private static Communicator createServerCommunicator(Socket socket) {
         return new CommunicatorServer(socket, new Context());
     }
 
@@ -64,7 +51,7 @@ public class CommunicatorFactory {
      * @return c 
      * 			- the communicator c
      */
-    public Communicator createCommunicator(Socket socket, boolean isServerCommunicator) {
+    public static Communicator createCommunicator(Socket socket, boolean isServerCommunicator) {
         return isServerCommunicator ? createServerCommunicator(socket) : createClientCommunicator(socket);
     }
 }
