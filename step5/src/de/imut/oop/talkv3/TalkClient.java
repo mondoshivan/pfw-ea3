@@ -2,6 +2,7 @@ package step5.src.de.imut.oop.talkv3;
 
 import step5.src.de.imut.oop.talkv3.command.Context;
 import step5.src.de.imut.oop.talkv3.common.Common;
+import step5.src.de.imut.oop.talkv3.communication.CommunicatorFactory;
 
 import java.io.IOException;
 import java.net.Socket;

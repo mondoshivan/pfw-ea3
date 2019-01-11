@@ -1,5 +1,6 @@
-package step5.src.de.imut.oop.talkv3;
+package step5.src.de.imut.oop.talkv3.communication;
 
+import step5.src.de.imut.oop.talkv3.TalkClient;
 import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
 import step5.src.de.imut.oop.talkv3.server.command.set.BroadcastCommand;
 import step5.src.de.imut.oop.talkv3.server.command.set.ExitCommand;

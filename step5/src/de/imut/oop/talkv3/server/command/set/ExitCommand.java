@@ -1,6 +1,6 @@
 package step5.src.de.imut.oop.talkv3.server.command.set;
 
-import step5.src.de.imut.oop.talkv3.Dispatcher;
+import step5.src.de.imut.oop.talkv3.communication.Dispatcher;
 import step5.src.de.imut.oop.talkv3.command.Context;
 import step5.src.de.imut.oop.talkv3.command.RemoteCommand;
 

@@ -1,6 +1,7 @@
 package step5.src.de.imut.oop.talkv3;
 
 import step5.src.de.imut.oop.talkv3.common.Common;
+import step5.src.de.imut.oop.talkv3.communication.Dispatcher;
 
 /**
  * TalkServer.java

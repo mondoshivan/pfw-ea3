@@ -1,10 +1,8 @@
-package step5.src.de.imut.oop.talkv3;
+package step5.src.de.imut.oop.talkv3.communication;
 
 import step5.src.de.imut.oop.talkv3.command.Context;
 
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * CommunicatorFactory.java

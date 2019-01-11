@@ -1,4 +1,4 @@
-package step5.src.de.imut.oop.talkv3;
+package step5.src.de.imut.oop.talkv3.communication;
 
 import step5.src.de.imut.oop.talkv3.client.command.set.MessageCommand;
 import step5.src.de.imut.oop.talkv3.client.command.set.PingResponseCommand;
@@ -9,8 +9,6 @@ import step5.src.de.imut.oop.talkv3.common.SystemExitCode;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
